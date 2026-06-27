@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -41,8 +42,7 @@ class LocaleNotifier extends StateNotifier<Locale> {
   }
 }
 
-final localeProvider =
-    StateNotifierProvider<LocaleNotifier, Locale>((ref) {
+final localeProvider = StateNotifierProvider<LocaleNotifier, Locale>((ref) {
   return LocaleNotifier(ref.watch(preferencesRepositoryProvider));
 });
 
@@ -65,18 +65,14 @@ class ThemeModeNotifier extends StateNotifier<ThemeMode> {
   }
 }
 
-final themeModeProvider =
-    StateNotifierProvider<ThemeModeNotifier, ThemeMode>((ref) {
+final themeModeProvider = StateNotifierProvider<ThemeModeNotifier, ThemeMode>((
+  ref,
+) {
   return ThemeModeNotifier(ref.watch(preferencesRepositoryProvider));
 });
 
 class BillSession {
-  const BillSession({
-    this.disco,
-    this.category,
-    this.units,
-    this.result,
-  });
+  const BillSession({this.disco, this.category, this.units, this.result});
 
   final String? disco;
   final ConsumerCategory? category;
@@ -100,7 +96,7 @@ class BillSession {
 
 class BillSessionNotifier extends StateNotifier<BillSession> {
   BillSessionNotifier(this._prefs, this._calculator, this._tariffRepo)
-      : super(const BillSession()) {
+    : super(const BillSession()) {
     _restore();
   }
 
@@ -109,10 +105,7 @@ class BillSessionNotifier extends StateNotifier<BillSession> {
   final TariffRepository _tariffRepo;
 
   void _restore() {
-    state = BillSession(
-      disco: _prefs.lastDisco,
-      category: _prefs.lastCategory,
-    );
+    state = BillSession(disco: _prefs.lastDisco, category: _prefs.lastCategory);
   }
 
   Future<void> setSelection({
@@ -148,12 +141,14 @@ class BillSessionNotifier extends StateNotifier<BillSession> {
 
 final billSessionProvider =
     StateNotifierProvider<BillSessionNotifier, BillSession>((ref) {
-  return BillSessionNotifier(
-    ref.watch(preferencesRepositoryProvider),
-    ref.watch(billCalculatorProvider),
-    ref.watch(tariffRepositoryProvider),
-  );
-});
+      return BillSessionNotifier(
+        ref.watch(preferencesRepositoryProvider),
+        ref.watch(billCalculatorProvider),
+        ref.watch(tariffRepositoryProvider),
+      );
+    });
+
+// ─── AUTH ───────────────────────────────────────────────────────────────────
 
 class AuthState {
   const AuthState({
@@ -169,20 +164,19 @@ class AuthState {
 
 class AuthNotifier extends StateNotifier<AuthState> {
   AuthNotifier(this._prefs)
-      : super(
-          AuthState(
-            isAuthenticated: _prefs.hasSession,
-            method: _prefs.authMethod,
-            displayName: _prefs.displayName,
-          ),
-        );
+    : super(
+        AuthState(
+          isAuthenticated: FirebaseAuth.instance.currentUser != null,
+          method: _prefs.authMethod,
+          displayName:
+              FirebaseAuth.instance.currentUser?.displayName ??
+              _prefs.displayName,
+        ),
+      );
 
   final PreferencesRepository _prefs;
 
-  Future<void> signIn({
-    required AuthMethod method,
-    String? displayName,
-  }) async {
+  Future<void> signIn({required AuthMethod method, String? displayName}) async {
     await _prefs.setHasSession(true);
     await _prefs.setAuthMethod(method);
     await _prefs.setDisplayName(displayName);
@@ -194,11 +188,9 @@ class AuthNotifier extends StateNotifier<AuthState> {
   }
 
   Future<void> signOut() async {
+    await FirebaseAuth.instance.signOut();
     await _prefs.clearSession();
-    state = const AuthState(
-      isAuthenticated: false,
-      method: AuthMethod.none,
-    );
+    state = const AuthState(isAuthenticated: false, method: AuthMethod.none);
   }
 }
 

@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -25,15 +26,38 @@ class TariffRepository {
     }
 
     final defaults = await _loadDefaultTariffs();
-    await _cacheTariffs(defaults);
+    await _cacheTariffs(json.encode(defaults.map((k, v) => MapEntry(k, v))));
     _memoryCache = defaults;
     return defaults;
   }
 
   Future<void> refreshTariffs() async {
-    // Firebase Remote Config integration point — uses bundled defaults for now.
+    try {
+      final remoteConfig = FirebaseRemoteConfig.instance;
+
+      await remoteConfig.setConfigSettings(
+        RemoteConfigSettings(
+          fetchTimeout: const Duration(seconds: 10),
+          minimumFetchInterval: const Duration(hours: 1),
+        ),
+      );
+
+      await remoteConfig.fetchAndActivate();
+
+      final jsonStr = remoteConfig.getString('tariff_data');
+
+      if (jsonStr.isNotEmpty) {
+        final parsed = json.decode(jsonStr) as Map<String, dynamic>;
+        _memoryCache = _parseTariffs(parsed);
+        await _cacheTariffs(jsonStr);
+        return;
+      }
+    } catch (e) {
+      // Remote Config failed — fall back to cache or bundled defaults
+    }
+
+    // Fallback: bundled asset
     final defaults = await _loadDefaultTariffs();
-    await _cacheTariffs(defaults);
     _memoryCache = defaults;
   }
 
@@ -42,7 +66,8 @@ class TariffRepository {
     if (cachedDate == null) return false;
     try {
       final date = DateTime.parse(cachedDate);
-      return DateTime.now().difference(date).inDays > AppConstants.ratesStaleDays;
+      return DateTime.now().difference(date).inDays >
+          AppConstants.ratesStaleDays;
     } catch (_) {
       return false;
     }
@@ -62,9 +87,8 @@ class TariffRepository {
     );
   }
 
-  Future<void> _cacheTariffs(Map<String, DiscoTariff> tariffs) async {
-    final raw = await rootBundle.loadString('assets/data/default_tariffs.json');
-    await _prefs.setString(_cacheKey, raw);
+  Future<void> _cacheTariffs(String jsonStr) async {
+    await _prefs.setString(_cacheKey, jsonStr);
     await _prefs.setString(_cacheDateKey, DateTime.now().toIso8601String());
   }
 }

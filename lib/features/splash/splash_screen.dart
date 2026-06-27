@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -11,17 +12,15 @@ class SplashScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final init = ref.watch(appInitializationProvider);
     final l10n = context.l10n;
     final theme = Theme.of(context);
 
     ref.listen(appInitializationProvider, (previous, next) {
       next.whenData((_) {
         if (!context.mounted) return;
-        final auth = ref.read(authProvider);
-        if (auth.isAuthenticated) {
-          final onboarding = ref.read(onboardingCompleteProvider);
-          context.go(onboarding ? '/home' : '/language');
+        final firebaseUser = FirebaseAuth.instance.currentUser;
+        if (firebaseUser != null) {
+          context.go('/home');
         } else {
           context.go('/login');
         }
@@ -65,15 +64,14 @@ class SplashScreen extends ConsumerWidget {
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 48),
-              if (init.isLoading)
-                SizedBox(
-                  width: 28,
-                  height: 28,
-                  child: CircularProgressIndicator(
-                    strokeWidth: 2.5,
-                    color: theme.colorScheme.primary,
-                  ),
+              SizedBox(
+                width: 28,
+                height: 28,
+                child: CircularProgressIndicator(
+                  strokeWidth: 2.5,
+                  color: theme.colorScheme.primary,
                 ),
+              ),
             ],
           ),
         ),

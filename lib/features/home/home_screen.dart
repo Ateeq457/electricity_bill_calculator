@@ -24,16 +24,15 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   Future<void> _onNext() async {
     final l10n = context.l10n;
     if (_selectedDisco == null || _selectedCategory == null) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(l10n.selectDiscoAndCategory)),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(l10n.selectDiscoAndCategory)));
       return;
     }
 
-    await ref.read(billSessionProvider.notifier).setSelection(
-          disco: _selectedDisco!,
-          category: _selectedCategory!,
-        );
+    await ref
+        .read(billSessionProvider.notifier)
+        .setSelection(disco: _selectedDisco!, category: _selectedCategory!);
     if (!mounted) return;
     context.push('/units');
   }
@@ -50,8 +49,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
       _restoredSession = true;
     }
 
-    final canProceed =
-        _selectedDisco != null && _selectedCategory != null;
+    final canProceed = _selectedDisco != null && _selectedCategory != null;
 
     return MainShell(
       currentIndex: 0,
@@ -84,8 +82,9 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                           : l10n.selectProvider,
                       style: context.localizedStyle(
                         theme.textTheme.titleMedium?.copyWith(
-                          color: theme.colorScheme.onSurface
-                              .withValues(alpha: 0.75),
+                          color: theme.colorScheme.onSurface.withValues(
+                            alpha: 0.75,
+                          ),
                         ),
                       ),
                     ),
@@ -102,18 +101,15 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                   crossAxisSpacing: 12,
                   childAspectRatio: 1.55,
                 ),
-                delegate: SliverChildBuilderDelegate(
-                  (context, index) {
-                    final disco = AppConstants.discos[index];
-                    final selected = _selectedDisco == disco;
-                    return _DiscoCard(
-                      disco: disco,
-                      selected: selected,
-                      onTap: () => setState(() => _selectedDisco = disco),
-                    );
-                  },
-                  childCount: AppConstants.discos.length,
-                ),
+                delegate: SliverChildBuilderDelegate((context, index) {
+                  final disco = AppConstants.discos[index];
+                  final selected = _selectedDisco == disco;
+                  return _DiscoCard(
+                    disco: disco,
+                    selected: selected,
+                    onTap: () => setState(() => _selectedDisco = disco),
+                  );
+                }, childCount: AppConstants.discos.length),
               ),
             ),
             SliverToBoxAdapter(
@@ -125,10 +121,12 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                 ),
               ),
             ),
+            // Main category selector
             SliverToBoxAdapter(
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 24),
-                child: SegmentedButton<ConsumerCategory?>(
+                child: SegmentedButton<ConsumerCategory>(
+                  emptySelectionAllowed: true,
                   segments: [
                     ButtonSegment(
                       value: ConsumerCategory.protected,
@@ -139,28 +137,43 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                       label: Text(l10n.unprotected),
                     ),
                   ],
-                  selected: {_selectedCategory},
+                  selected: _selectedCategory != null
+                      ? {_selectedCategory!}
+                      : const {},
                   onSelectionChanged: (value) {
-                    setState(() => _selectedCategory = value.first);
+                    setState(
+                      () => _selectedCategory = value.isEmpty
+                          ? null
+                          : value.first,
+                    );
                   },
                 ),
               ),
             ),
+            // Coming soon placeholder — simple container, no SegmentedButton
             SliverToBoxAdapter(
               child: Padding(
                 padding: const EdgeInsets.fromLTRB(24, 12, 24, 0),
                 child: Opacity(
                   opacity: 0.5,
-                  child: SegmentedButton<ConsumerCategory?>(
-                    segments: [
-                      ButtonSegment(
-                        value: null,
-                        enabled: false,
-                        label: Text(l10n.commercialComingSoon),
+                  child: Container(
+                    width: double.infinity,
+                    padding: const EdgeInsets.symmetric(vertical: 12),
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: theme.colorScheme.outline.withValues(alpha: 0.4),
                       ),
-                    ],
-                    selected: const {},
-                    onSelectionChanged: (_) {},
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: Text(
+                      l10n.commercialComingSoon,
+                      textAlign: TextAlign.center,
+                      style: theme.textTheme.bodyMedium?.copyWith(
+                        color: theme.colorScheme.onSurface.withValues(
+                          alpha: 0.5,
+                        ),
+                      ),
+                    ),
                   ),
                 ),
               ),

@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
@@ -13,30 +14,22 @@ import '../../features/splash/splash_screen.dart';
 import '../../features/units/units_input_screen.dart';
 
 final routerProvider = Provider<GoRouter>((ref) {
-  final auth = ref.watch(authProvider);
-  final onboardingComplete = ref.watch(onboardingCompleteProvider);
-
   return GoRouter(
     initialLocation: '/splash',
     redirect: (context, state) {
       final path = state.uri.path;
-      final isSplash = path == '/splash';
-      final isLogin = path.startsWith('/login');
-      final isLanguage = path == '/language';
 
-      if (isSplash) return null;
+      if (path == '/splash') return null;
 
-      if (!auth.isAuthenticated) {
-        return isLogin ? null : '/login';
+      final firebaseUser = FirebaseAuth.instance.currentUser;
+
+      if (firebaseUser == null) {
+        if (path.startsWith('/login')) return null;
+        return '/login';
       }
 
-      if (!onboardingComplete && !isLanguage) {
-        return '/language';
-      }
-
-      if (isLogin || isLanguage) {
-        return '/home';
-      }
+      // User logged in — just go to home, skip language loop
+      if (path.startsWith('/login')) return '/home';
 
       return null;
     },
@@ -63,10 +56,7 @@ final routerProvider = Provider<GoRouter>((ref) {
         path: '/language',
         builder: (context, state) => const LanguageSelectionScreen(),
       ),
-      GoRoute(
-        path: '/home',
-        builder: (context, state) => const HomeScreen(),
-      ),
+      GoRoute(path: '/home', builder: (context, state) => const HomeScreen()),
       GoRoute(
         path: '/units',
         builder: (context, state) => const UnitsInputScreen(),
