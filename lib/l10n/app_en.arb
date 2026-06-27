@@ -1,0 +1,120 @@
+{
+  "@@locale": "en",
+  "appName": "Bill Calculator",
+  "appTagline": "Estimate your electricity bill",
+  "splashLoading": "Loading...",
+  "signInWelcome": "Sign in to estimate your electricity bill",
+  "continueWithGoogle": "Continue with Google",
+  "continueWithPhone": "Continue with Phone Number",
+  "continueWithEmail": "Continue with Email",
+  "continueAsGuest": "Continue as Guest",
+  "phoneNumber": "Phone Number",
+  "enterPhoneHint": "Enter your phone number",
+  "sendOtp": "Send OTP",
+  "enterOtp": "Enter 6-digit OTP",
+  "verifyOtp": "Verify OTP",
+  "resendOtpIn": "Resend code in {seconds}s",
+  "@resendOtpIn": {
+    "placeholders": {
+      "seconds": { "type": "int" }
+    }
+  },
+  "resendOtp": "Resend OTP",
+  "email": "Email",
+  "password": "Password",
+  "login": "Login",
+  "createAccount": "Create Account",
+  "switchToCreateAccount": "Don't have an account? Create one",
+  "switchToLogin": "Already have an account? Login",
+  "chooseLanguage": "Choose your language",
+  "chooseLanguageUrdu": "اپنی زبان منتخب کریں",
+  "english": "English",
+  "urdu": "اردو (Urdu)",
+  "continueButton": "Continue",
+  "selectProvider": "Select your electricity provider",
+  "selectProviderUrdu": "اپنی بجلی کمپنی منتخب کریں",
+  "consumerCategory": "Consumer Category",
+  "protected": "Protected",
+  "unprotected": "Unprotected",
+  "commercialComingSoon": "Commercial (Coming Soon)",
+  "next": "Next",
+  "enterUnits": "Enter your consumed units (kWh)",
+  "enterUnitsUrdu": "اپنی استعمال کردہ یونٹس درج کریں",
+  "unitsHelper": "Find units on your previous bill or from your meter reading",
+  "calculateBill": "Calculate Bill",
+  "calculateBillUrdu": "بل کیلکولیٹ کریں",
+  "invalidUnits": "Please enter a valid positive number of units",
+  "editSelection": "Edit",
+  "estimatedBill": "Estimated Bill",
+  "totalEstimatedBill": "Total Estimated Bill",
+  "energyCharges": "Energy Charges",
+  "fixedCharges": "Fixed Charges",
+  "gst": "Sales Tax (GST)",
+  "fpa": "Fuel Adjustment (FPA)",
+  "electricityDuty": "Electricity Duty",
+  "disclaimer": "This is an estimate, not your official bill. Actual bill may vary due to taxes, adjustments, or billing cycle differences.",
+  "ratesLastUpdated": "Rates last updated: {date}",
+  "@ratesLastUpdated": {
+    "placeholders": {
+      "date": { "type": "String" }
+    }
+  },
+  "ratesMayBeOutdated": "Rates may not be the latest. Connect to internet to refresh.",
+  "share": "Share",
+  "reportIssue": "Report Issue",
+  "calculateAgain": "Calculate Again",
+  "reportIssueTitle": "Report an issue with this estimate",
+  "actualBillOptional": "What was your actual bill amount? (optional)",
+  "sendViaWhatsapp": "Send via WhatsApp",
+  "sendViaEmail": "Send via Email",
+  "settings": "Settings",
+  "home": "Home",
+  "history": "History",
+  "historyComingSoon": "Bill history coming soon",
+  "account": "Account",
+  "guestUser": "Guest User",
+  "signIn": "Sign In",
+  "signOut": "Sign Out",
+  "language": "Language",
+  "theme": "Theme",
+  "themeLight": "Light",
+  "themeDark": "Dark",
+  "themeSystem": "System",
+  "aboutApp": "About This App",
+  "aboutAppDescription": "This app provides estimated electricity bills based on publicly available NEPRA tariff data. Figures are for reference only.",
+  "rateThisApp": "Rate This App",
+  "privacyPolicy": "Privacy Policy",
+  "feedback": "Send Feedback",
+  "version": "Version {version}",
+  "@version": {
+    "placeholders": {
+      "version": { "type": "String" }
+    }
+  },
+  "pkr": "PKR",
+  "units": "units",
+  "shareBillText": "Electricity Bill Estimate\nDISCO: {disco}\nCategory: {category}\nUnits: {units} kWh\nEstimated Bill: PKR {amount}\n\nDisclaimer: This is an estimate only.",
+  "@shareBillText": {
+    "placeholders": {
+      "disco": { "type": "String" },
+      "category": { "type": "String" },
+      "units": { "type": "String" },
+      "amount": { "type": "String" }
+    }
+  },
+  "feedbackWhatsappMessage": "Bill Estimate Issue Report\nDISCO: {disco}\nCategory: {category}\nUnits: {units}\nEstimated: PKR {estimated}\nActual (if provided): {actual}",
+  "@feedbackWhatsappMessage": {
+    "placeholders": {
+      "disco": { "type": "String" },
+      "category": { "type": "String" },
+      "units": { "type": "String" },
+      "estimated": { "type": "String" },
+      "actual": { "type": "String" }
+    }
+  },
+  "adPlaceholder": "Advertisement",
+  "loginSuccess": "Welcome!",
+  "loginFailed": "Login failed. Please try again.",
+  "otpSent": "OTP sent to your phone",
+  "selectDiscoAndCategory": "Please select a DISCO and category"
+}

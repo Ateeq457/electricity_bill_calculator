@@ -1,0 +1,434 @@
+{
+  "LESCO": {
+    "protected": {
+      "slabs": [
+        { "upto": 50, "rate": 3.95 },
+        { "upto": 100, "rate": 7.74 },
+        { "upto": 200, "rate": 10.06 },
+        { "upto": 300, "rate": 16.09 },
+        { "upto": 400, "rate": 22.95 },
+        { "upto": 500, "rate": 28.31 },
+        { "upto": 600, "rate": 32.71 },
+        { "upto": 700, "rate": 35.61 },
+        { "upto": 999999, "rate": 42.72 }
+      ],
+      "fixed_charge": 200,
+      "gst_percent": 0,
+      "fpa_per_unit": 4.92,
+      "electricity_duty_percent": 1.5
+    },
+    "unprotected": {
+      "slabs": [
+        { "upto": 100, "rate": 22.0 },
+        { "upto": 200, "rate": 32.0 },
+        { "upto": 300, "rate": 37.0 },
+        { "upto": 400, "rate": 43.0 },
+        { "upto": 500, "rate": 47.0 },
+        { "upto": 600, "rate": 49.0 },
+        { "upto": 700, "rate": 52.0 },
+        { "upto": 999999, "rate": 65.0 }
+      ],
+      "fixed_charge": 200,
+      "gst_percent": 17,
+      "fpa_per_unit": 4.92,
+      "electricity_duty_percent": 1.5
+    },
+    "last_updated": "2026-06-01"
+  },
+  "PESCO": {
+    "protected": {
+      "slabs": [
+        { "upto": 50, "rate": 3.95 },
+        { "upto": 100, "rate": 7.74 },
+        { "upto": 200, "rate": 10.06 },
+        { "upto": 300, "rate": 16.09 },
+        { "upto": 400, "rate": 22.95 },
+        { "upto": 500, "rate": 28.31 },
+        { "upto": 600, "rate": 32.71 },
+        { "upto": 700, "rate": 35.61 },
+        { "upto": 999999, "rate": 42.72 }
+      ],
+      "fixed_charge": 200,
+      "gst_percent": 0,
+      "fpa_per_unit": 4.92,
+      "electricity_duty_percent": 1.5
+    },
+    "unprotected": {
+      "slabs": [
+        { "upto": 100, "rate": 22.0 },
+        { "upto": 200, "rate": 32.0 },
+        { "upto": 300, "rate": 37.0 },
+        { "upto": 400, "rate": 43.0 },
+        { "upto": 500, "rate": 47.0 },
+        { "upto": 600, "rate": 49.0 },
+        { "upto": 700, "rate": 52.0 },
+        { "upto": 999999, "rate": 65.0 }
+      ],
+      "fixed_charge": 200,
+      "gst_percent": 17,
+      "fpa_per_unit": 4.92,
+      "electricity_duty_percent": 1.5
+    },
+    "last_updated": "2026-06-01"
+  },
+  "IESCO": {
+    "protected": {
+      "slabs": [
+        { "upto": 50, "rate": 3.95 },
+        { "upto": 100, "rate": 7.74 },
+        { "upto": 200, "rate": 10.06 },
+        { "upto": 300, "rate": 16.09 },
+        { "upto": 400, "rate": 22.95 },
+        { "upto": 500, "rate": 28.31 },
+        { "upto": 600, "rate": 32.71 },
+        { "upto": 700, "rate": 35.61 },
+        { "upto": 999999, "rate": 42.72 }
+      ],
+      "fixed_charge": 200,
+      "gst_percent": 0,
+      "fpa_per_unit": 4.92,
+      "electricity_duty_percent": 1.5
+    },
+    "unprotected": {
+      "slabs": [
+        { "upto": 100, "rate": 22.0 },
+        { "upto": 200, "rate": 32.0 },
+        { "upto": 300, "rate": 37.0 },
+        { "upto": 400, "rate": 43.0 },
+        { "upto": 500, "rate": 47.0 },
+        { "upto": 600, "rate": 49.0 },
+        { "upto": 700, "rate": 52.0 },
+        { "upto": 999999, "rate": 65.0 }
+      ],
+      "fixed_charge": 200,
+      "gst_percent": 17,
+      "fpa_per_unit": 4.92,
+      "electricity_duty_percent": 1.5
+    },
+    "last_updated": "2026-06-01"
+  },
+  "MEPCO": {
+    "protected": {
+      "slabs": [
+        { "upto": 50, "rate": 3.95 },
+        { "upto": 100, "rate": 7.74 },
+        { "upto": 200, "rate": 10.06 },
+        { "upto": 300, "rate": 16.09 },
+        { "upto": 400, "rate": 22.95 },
+        { "upto": 500, "rate": 28.31 },
+        { "upto": 600, "rate": 32.71 },
+        { "upto": 700, "rate": 35.61 },
+        { "upto": 999999, "rate": 42.72 }
+      ],
+      "fixed_charge": 200,
+      "gst_percent": 0,
+      "fpa_per_unit": 4.92,
+      "electricity_duty_percent": 1.5
+    },
+    "unprotected": {
+      "slabs": [
+        { "upto": 100, "rate": 22.0 },
+        { "upto": 200, "rate": 32.0 },
+        { "upto": 300, "rate": 37.0 },
+        { "upto": 400, "rate": 43.0 },
+        { "upto": 500, "rate": 47.0 },
+        { "upto": 600, "rate": 49.0 },
+        { "upto": 700, "rate": 52.0 },
+        { "upto": 999999, "rate": 65.0 }
+      ],
+      "fixed_charge": 200,
+      "gst_percent": 17,
+      "fpa_per_unit": 4.92,
+      "electricity_duty_percent": 1.5
+    },
+    "last_updated": "2026-06-01"
+  },
+  "GEPCO": {
+    "protected": {
+      "slabs": [
+        { "upto": 50, "rate": 3.95 },
+        { "upto": 100, "rate": 7.74 },
+        { "upto": 200, "rate": 10.06 },
+        { "upto": 300, "rate": 16.09 },
+        { "upto": 400, "rate": 22.95 },
+        { "upto": 500, "rate": 28.31 },
+        { "upto": 600, "rate": 32.71 },
+        { "upto": 700, "rate": 35.61 },
+        { "upto": 999999, "rate": 42.72 }
+      ],
+      "fixed_charge": 200,
+      "gst_percent": 0,
+      "fpa_per_unit": 4.92,
+      "electricity_duty_percent": 1.5
+    },
+    "unprotected": {
+      "slabs": [
+        { "upto": 100, "rate": 22.0 },
+        { "upto": 200, "rate": 32.0 },
+        { "upto": 300, "rate": 37.0 },
+        { "upto": 400, "rate": 43.0 },
+        { "upto": 500, "rate": 47.0 },
+        { "upto": 600, "rate": 49.0 },
+        { "upto": 700, "rate": 52.0 },
+        { "upto": 999999, "rate": 65.0 }
+      ],
+      "fixed_charge": 200,
+      "gst_percent": 17,
+      "fpa_per_unit": 4.92,
+      "electricity_duty_percent": 1.5
+    },
+    "last_updated": "2026-06-01"
+  },
+  "FESCO": {
+    "protected": {
+      "slabs": [
+        { "upto": 50, "rate": 3.95 },
+        { "upto": 100, "rate": 7.74 },
+        { "upto": 200, "rate": 10.06 },
+        { "upto": 300, "rate": 16.09 },
+        { "upto": 400, "rate": 22.95 },
+        { "upto": 500, "rate": 28.31 },
+        { "upto": 600, "rate": 32.71 },
+        { "upto": 700, "rate": 35.61 },
+        { "upto": 999999, "rate": 42.72 }
+      ],
+      "fixed_charge": 200,
+      "gst_percent": 0,
+      "fpa_per_unit": 4.92,
+      "electricity_duty_percent": 1.5
+    },
+    "unprotected": {
+      "slabs": [
+        { "upto": 100, "rate": 22.0 },
+        { "upto": 200, "rate": 32.0 },
+        { "upto": 300, "rate": 37.0 },
+        { "upto": 400, "rate": 43.0 },
+        { "upto": 500, "rate": 47.0 },
+        { "upto": 600, "rate": 49.0 },
+        { "upto": 700, "rate": 52.0 },
+        { "upto": 999999, "rate": 65.0 }
+      ],
+      "fixed_charge": 200,
+      "gst_percent": 17,
+      "fpa_per_unit": 4.92,
+      "electricity_duty_percent": 1.5
+    },
+    "last_updated": "2026-06-01"
+  },
+  "HESCO": {
+    "protected": {
+      "slabs": [
+        { "upto": 50, "rate": 3.95 },
+        { "upto": 100, "rate": 7.74 },
+        { "upto": 200, "rate": 10.06 },
+        { "upto": 300, "rate": 16.09 },
+        { "upto": 400, "rate": 22.95 },
+        { "upto": 500, "rate": 28.31 },
+        { "upto": 600, "rate": 32.71 },
+        { "upto": 700, "rate": 35.61 },
+        { "upto": 999999, "rate": 42.72 }
+      ],
+      "fixed_charge": 200,
+      "gst_percent": 0,
+      "fpa_per_unit": 4.92,
+      "electricity_duty_percent": 1.5
+    },
+    "unprotected": {
+      "slabs": [
+        { "upto": 100, "rate": 22.0 },
+        { "upto": 200, "rate": 32.0 },
+        { "upto": 300, "rate": 37.0 },
+        { "upto": 400, "rate": 43.0 },
+        { "upto": 500, "rate": 47.0 },
+        { "upto": 600, "rate": 49.0 },
+        { "upto": 700, "rate": 52.0 },
+        { "upto": 999999, "rate": 65.0 }
+      ],
+      "fixed_charge": 200,
+      "gst_percent": 17,
+      "fpa_per_unit": 4.92,
+      "electricity_duty_percent": 1.5
+    },
+    "last_updated": "2026-06-01"
+  },
+  "SEPCO": {
+    "protected": {
+      "slabs": [
+        { "upto": 50, "rate": 3.95 },
+        { "upto": 100, "rate": 7.74 },
+        { "upto": 200, "rate": 10.06 },
+        { "upto": 300, "rate": 16.09 },
+        { "upto": 400, "rate": 22.95 },
+        { "upto": 500, "rate": 28.31 },
+        { "upto": 600, "rate": 32.71 },
+        { "upto": 700, "rate": 35.61 },
+        { "upto": 999999, "rate": 42.72 }
+      ],
+      "fixed_charge": 200,
+      "gst_percent": 0,
+      "fpa_per_unit": 4.92,
+      "electricity_duty_percent": 1.5
+    },
+    "unprotected": {
+      "slabs": [
+        { "upto": 100, "rate": 22.0 },
+        { "upto": 200, "rate": 32.0 },
+        { "upto": 300, "rate": 37.0 },
+        { "upto": 400, "rate": 43.0 },
+        { "upto": 500, "rate": 47.0 },
+        { "upto": 600, "rate": 49.0 },
+        { "upto": 700, "rate": 52.0 },
+        { "upto": 999999, "rate": 65.0 }
+      ],
+      "fixed_charge": 200,
+      "gst_percent": 17,
+      "fpa_per_unit": 4.92,
+      "electricity_duty_percent": 1.5
+    },
+    "last_updated": "2026-06-01"
+  },
+  "QESCO": {
+    "protected": {
+      "slabs": [
+        { "upto": 50, "rate": 3.95 },
+        { "upto": 100, "rate": 7.74 },
+        { "upto": 200, "rate": 10.06 },
+        { "upto": 300, "rate": 16.09 },
+        { "upto": 400, "rate": 22.95 },
+        { "upto": 500, "rate": 28.31 },
+        { "upto": 600, "rate": 32.71 },
+        { "upto": 700, "rate": 35.61 },
+        { "upto": 999999, "rate": 42.72 }
+      ],
+      "fixed_charge": 200,
+      "gst_percent": 0,
+      "fpa_per_unit": 4.92,
+      "electricity_duty_percent": 1.5
+    },
+    "unprotected": {
+      "slabs": [
+        { "upto": 100, "rate": 22.0 },
+        { "upto": 200, "rate": 32.0 },
+        { "upto": 300, "rate": 37.0 },
+        { "upto": 400, "rate": 43.0 },
+        { "upto": 500, "rate": 47.0 },
+        { "upto": 600, "rate": 49.0 },
+        { "upto": 700, "rate": 52.0 },
+        { "upto": 999999, "rate": 65.0 }
+      ],
+      "fixed_charge": 200,
+      "gst_percent": 17,
+      "fpa_per_unit": 4.92,
+      "electricity_duty_percent": 1.5
+    },
+    "last_updated": "2026-06-01"
+  },
+  "TESCO": {
+    "protected": {
+      "slabs": [
+        { "upto": 50, "rate": 3.95 },
+        { "upto": 100, "rate": 7.74 },
+        { "upto": 200, "rate": 10.06 },
+        { "upto": 300, "rate": 16.09 },
+        { "upto": 400, "rate": 22.95 },
+        { "upto": 500, "rate": 28.31 },
+        { "upto": 600, "rate": 32.71 },
+        { "upto": 700, "rate": 35.61 },
+        { "upto": 999999, "rate": 42.72 }
+      ],
+      "fixed_charge": 200,
+      "gst_percent": 0,
+      "fpa_per_unit": 4.92,
+      "electricity_duty_percent": 1.5
+    },
+    "unprotected": {
+      "slabs": [
+        { "upto": 100, "rate": 22.0 },
+        { "upto": 200, "rate": 32.0 },
+        { "upto": 300, "rate": 37.0 },
+        { "upto": 400, "rate": 43.0 },
+        { "upto": 500, "rate": 47.0 },
+        { "upto": 600, "rate": 49.0 },
+        { "upto": 700, "rate": 52.0 },
+        { "upto": 999999, "rate": 65.0 }
+      ],
+      "fixed_charge": 200,
+      "gst_percent": 17,
+      "fpa_per_unit": 4.92,
+      "electricity_duty_percent": 1.5
+    },
+    "last_updated": "2026-06-01"
+  },
+  "HAZECO": {
+    "protected": {
+      "slabs": [
+        { "upto": 50, "rate": 3.95 },
+        { "upto": 100, "rate": 7.74 },
+        { "upto": 200, "rate": 10.06 },
+        { "upto": 300, "rate": 16.09 },
+        { "upto": 400, "rate": 22.95 },
+        { "upto": 500, "rate": 28.31 },
+        { "upto": 600, "rate": 32.71 },
+        { "upto": 700, "rate": 35.61 },
+        { "upto": 999999, "rate": 42.72 }
+      ],
+      "fixed_charge": 200,
+      "gst_percent": 0,
+      "fpa_per_unit": 4.92,
+      "electricity_duty_percent": 1.5
+    },
+    "unprotected": {
+      "slabs": [
+        { "upto": 100, "rate": 22.0 },
+        { "upto": 200, "rate": 32.0 },
+        { "upto": 300, "rate": 37.0 },
+        { "upto": 400, "rate": 43.0 },
+        { "upto": 500, "rate": 47.0 },
+        { "upto": 600, "rate": 49.0 },
+        { "upto": 700, "rate": 52.0 },
+        { "upto": 999999, "rate": 65.0 }
+      ],
+      "fixed_charge": 200,
+      "gst_percent": 17,
+      "fpa_per_unit": 4.92,
+      "electricity_duty_percent": 1.5
+    },
+    "last_updated": "2026-06-01"
+  },
+  "K-Electric": {
+    "protected": {
+      "slabs": [
+        { "upto": 50, "rate": 3.95 },
+        { "upto": 100, "rate": 7.74 },
+        { "upto": 200, "rate": 10.06 },
+        { "upto": 300, "rate": 16.09 },
+        { "upto": 400, "rate": 22.95 },
+        { "upto": 500, "rate": 28.31 },
+        { "upto": 600, "rate": 32.71 },
+        { "upto": 700, "rate": 35.61 },
+        { "upto": 999999, "rate": 42.72 }
+      ],
+      "fixed_charge": 200,
+      "gst_percent": 0,
+      "fpa_per_unit": 4.92,
+      "electricity_duty_percent": 1.5
+    },
+    "unprotected": {
+      "slabs": [
+        { "upto": 100, "rate": 22.0 },
+        { "upto": 200, "rate": 32.0 },
+        { "upto": 300, "rate": 37.0 },
+        { "upto": 400, "rate": 43.0 },
+        { "upto": 500, "rate": 47.0 },
+        { "upto": 600, "rate": 49.0 },
+        { "upto": 700, "rate": 52.0 },
+        { "upto": 999999, "rate": 65.0 }
+      ],
+      "fixed_charge": 200,
+      "gst_percent": 17,
+      "fpa_per_unit": 4.92,
+      "electricity_duty_percent": 1.5
+    },
+    "last_updated": "2026-06-01"
+  }
+}
