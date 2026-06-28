@@ -8,28 +8,47 @@ class AppLogo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final scheme = Theme.of(context).colorScheme;
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     return Container(
       width: size,
       height: size,
       decoration: BoxDecoration(
-        gradient: LinearGradient(
+        gradient: const LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
-          colors: [scheme.primary, scheme.secondary],
+          colors: [Color(0xFF00897B), Color(0xFF004D40)],
         ),
-        borderRadius: BorderRadius.circular(size * 0.28),
+        borderRadius: BorderRadius.circular(size * 0.26),
         boxShadow: [
           BoxShadow(
-            color: scheme.primary.withValues(alpha: 0.35),
-            blurRadius: 24,
-            offset: const Offset(0, 10),
+            color: const Color(0xFF00897B).withValues(alpha: isDark ? 0.45 : 0.30),
+            blurRadius: size * 0.4,
+            offset: Offset(0, size * 0.12),
           ),
         ],
       ),
-      child: Icon(
-        Icons.bolt_rounded,
-        color: Colors.white,
-        size: size * 0.55,
+      child: Stack(
+        alignment: Alignment.center,
+        children: [
+          // Decorative circle
+          Positioned(
+            top: -size * 0.12,
+            right: -size * 0.12,
+            child: Container(
+              width: size * 0.5,
+              height: size * 0.5,
+              decoration: BoxDecoration(
+                color: Colors.white.withValues(alpha: 0.07),
+                shape: BoxShape.circle,
+              ),
+            ),
+          ),
+          Icon(
+            Icons.bolt_rounded,
+            color: Colors.white,
+            size: size * 0.52,
+          ),
+        ],
       ),
     );
   }

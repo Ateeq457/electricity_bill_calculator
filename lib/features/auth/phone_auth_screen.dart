@@ -56,13 +56,11 @@ class _PhoneAuthScreenState extends ConsumerState<PhoneAuthScreen> {
 
   Future<void> _verifyOtp() async {
     if (_otpController.text.trim().length != 6) return;
-
     await ref.read(authProvider.notifier).signIn(
           method: AuthMethod.phone,
           displayName: _phoneController.text.trim(),
         );
     if (!mounted) return;
-
     final onboarding = ref.read(onboardingCompleteProvider);
     context.go(onboarding ? '/home' : '/language');
   }
@@ -70,73 +68,134 @@ class _PhoneAuthScreenState extends ConsumerState<PhoneAuthScreen> {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
+    final theme = Theme.of(context);
+    final scheme = theme.colorScheme;
+    final isDark = theme.brightness == Brightness.dark;
 
     return Scaffold(
-      appBar: AppBar(title: Text(l10n.continueWithPhone)),
-      body: Padding(
-        padding: const EdgeInsets.all(24),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            if (!_otpSent) ...[
-              Text(
-                l10n.phoneNumber,
-                style: context.localizedStyle(
-                  Theme.of(context).textTheme.titleMedium,
-                ),
-              ),
-              const SizedBox(height: 12),
-              TextField(
-                controller: _phoneController,
-                keyboardType: TextInputType.phone,
-                inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-                decoration: InputDecoration(
-                  hintText: l10n.enterPhoneHint,
-                  prefixText: '+92 ',
-                ),
-              ),
-              const Spacer(),
-              PrimaryButton(
-                label: l10n.sendOtp,
-                onPressed: _sendOtp,
-              ),
-            ] else ...[
-              Text(
-                l10n.enterOtp,
-                style: context.localizedStyle(
-                  Theme.of(context).textTheme.titleMedium,
-                ),
-              ),
-              const SizedBox(height: 12),
-              TextField(
-                controller: _otpController,
-                keyboardType: TextInputType.number,
-                maxLength: 6,
-                textAlign: TextAlign.center,
-                style: const TextStyle(
-                  fontSize: 24,
-                  letterSpacing: 8,
-                  fontWeight: FontWeight.w700,
-                ),
-                inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-                decoration: const InputDecoration(counterText: ''),
-              ),
+      appBar: AppBar(
+        title: Text(l10n.continueWithPhone),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back_rounded),
+          onPressed: () => context.pop(),
+        ),
+      ),
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(24),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
               const SizedBox(height: 8),
-              Center(
-                child: _secondsLeft > 0
-                    ? Text(l10n.resendOtpIn(_secondsLeft))
-                    : TextButton(
-                        onPressed: _sendOtp,
-                        child: Text(l10n.resendOtp),
-                      ),
-              ),
-              const Spacer(),
-              PrimaryButton(
-                label: l10n.verifyOtp,
-                onPressed: _verifyOtp,
-              ),
+              if (!_otpSent) ...[
+                Text(
+                  'Enter your phone number',
+                  style: theme.textTheme.headlineSmall?.copyWith(
+                    fontWeight: FontWeight.w800,
+                  ),
+                ),
+                const SizedBox(height: 6),
+                Text(
+                  "We'll send a 6-digit OTP to verify",
+                  style: theme.textTheme.bodyMedium?.copyWith(
+                    color: scheme.onSurface.withValues(alpha: 0.55),
+                  ),
+                ),
+                const SizedBox(height: 32),
+                TextField(
+                  controller: _phoneController,
+                  keyboardType: TextInputType.phone,
+                  inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                  decoration: InputDecoration(
+                    labelText: l10n.phoneNumber,
+                    hintText: l10n.enterPhoneHint,
+                    prefixIcon: const Icon(Icons.phone_android_rounded),
+                    prefixText: '+92  ',
+                    prefixStyle: TextStyle(
+                      fontWeight: FontWeight.w600,
+                      color: scheme.onSurface,
+                    ),
+                  ),
+                ),
+                const Spacer(),
+                PrimaryButton(
+                  label: l10n.sendOtp,
+                  icon: Icons.send_rounded,
+                  onPressed: _sendOtp,
+                ),
+              ] else ...[
+                Text(
+                  'Enter OTP',
+                  style: theme.textTheme.headlineSmall?.copyWith(
+                    fontWeight: FontWeight.w800,
+                  ),
+                ),
+                const SizedBox(height: 6),
+                Text(
+                  'Code sent to +92 ${_phoneController.text}',
+                  style: theme.textTheme.bodyMedium?.copyWith(
+                    color: scheme.onSurface.withValues(alpha: 0.55),
+                  ),
+                ),
+                const SizedBox(height: 32),
+                // OTP boxes
+                TextField(
+                  controller: _otpController,
+                  keyboardType: TextInputType.number,
+                  maxLength: 6,
+                  textAlign: TextAlign.center,
+                  style: theme.textTheme.displaySmall?.copyWith(
+                    fontWeight: FontWeight.w800,
+                    letterSpacing: 16,
+                  ),
+                  inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                  decoration: InputDecoration(
+                    counterText: '',
+                    hintText: '------',
+                    hintStyle: theme.textTheme.displaySmall?.copyWith(
+                      color: scheme.onSurface.withValues(alpha: 0.15),
+                      letterSpacing: 16,
+                      fontWeight: FontWeight.w800,
+                    ),
+                  ),
+                  onChanged: (v) {
+                    if (v.length == 6) _verifyOtp();
+                  },
+                ),
+                const SizedBox(height: 20),
+                Center(
+                  child: _secondsLeft > 0
+                      ? Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(Icons.timer_outlined,
+                                size: 14,
+                                color:
+                                    scheme.onSurface.withValues(alpha: 0.45)),
+                            const SizedBox(width: 6),
+                            Text(
+                              l10n.resendOtpIn(_secondsLeft),
+                              style: theme.textTheme.bodySmall?.copyWith(
+                                color:
+                                    scheme.onSurface.withValues(alpha: 0.5),
+                              ),
+                            ),
+                          ],
+                        )
+                      : TextButton(
+                          onPressed: _sendOtp,
+                          child: Text(l10n.resendOtp),
+                        ),
+                ),
+                const Spacer(),
+                PrimaryButton(
+                  label: l10n.verifyOtp,
+                  icon: Icons.verified_rounded,
+                  onPressed: _verifyOtp,
+                ),
+              ],
             ],
-          ],
+          ),
         ),
       ),
     );
