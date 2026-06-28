@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "1097671455586-2j24talakl3g8oo293so23rdltm4k5ou.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.electricity_bill_calculator",
+            "certificate_hash": "710411c797e22670837fea6278c498b7b4cfd09e"
+          }
+        },
+        {
           "client_id": "1097671455586-b1veh4vi8lc3gmleeggivf5d6pe175dm.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -49,6 +57,14 @@
         }
       },
       "oauth_client": [
+        {
+          "client_id": "1097671455586-m5n3uhth78knusge07pmugn0vu0r7okr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.skypiontech.electricitycalculator",
+            "certificate_hash": "710411c797e22670837fea6278c498b7b4cfd09e"
+          }
+        },
         {
           "client_id": "1097671455586-b1veh4vi8lc3gmleeggivf5d6pe175dm.apps.googleusercontent.com",
           "client_type": 3
